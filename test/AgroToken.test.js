@@ -7,7 +7,7 @@ contract("AgroToken", accounts => {
     const _symbol="AGT";
 
     beforeEach(async function(){
-        this.token = await agrotoken.new(_name, _symbol);
+        this.token = await agrotoken.new(_name, _symbol, 100);
     });
 
     describe("token attributes", function(){
