@@ -8,4 +8,9 @@ contract AgroToken is ERC20{
     {
 
     }
+
+    function mint(uint _tokens) public{
+        _mint(msg.sender,_tokens);
+    }
+
 }

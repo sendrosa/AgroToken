@@ -16,4 +16,14 @@ contract("AgroToken", accounts => {
             name.should.equal(_name);
         });
     });
+
+    describe("mint supply", function(){
+        it("create correct supply", async function(){
+            await this.token.mint(15);
+            const total= (await this.token.totalSupply()).toString();
+            total.should.equal('15');
+        });
+    });
+
+
 });
