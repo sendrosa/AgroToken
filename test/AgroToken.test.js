@@ -24,6 +24,13 @@ contract("AgroToken", accounts => {
             total.should.equal('15');
         });
     });
-
+    describe("transfer", function(){
+        it("create correct transfer", async function(){
+            await this.token.mint(15);
+            await this.token.transfer("0x747235e19f5d73d8089a5eb23b1ef79f83af7631", 2);
+            const total= (await this.token.balanceOf("0x747235e19f5d73d8089a5eb23b1ef79f83af7631")).toString();
+            total.should.equal('2');
+        });
+    });
 
 });
