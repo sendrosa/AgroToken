@@ -21,14 +21,5 @@ contract AgroToken is ERC20{
         emit status(info);
     }
 
-    
-  // function buyTokens(address _recipient) public payable {
-  //   require(_recipient != address(0));
-  //   require(msg.value != 0);
-
-  //   uint256 tokens = msg.value/10**16;
-
-  //   token.transfer(_recipient, tokens);
-  //   wallet.transfer(msg.value);
-  // }
+  // create a craft function
 }
