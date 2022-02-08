@@ -6,7 +6,7 @@ contract SolutionERC721 is ERC721{
 
     event tokeninfo(uint uri, uint batchno);
     event status(bytes32 info);
-    uint nonce;
+    uint nonce=0;
 
     constructor(string memory _name, string memory _symbol) 
         ERC721(_name, _symbol){}
@@ -14,6 +14,7 @@ contract SolutionERC721 is ERC721{
     //just mine new token
     function mint(uint uri, uint batchno) public{
         _mint(msg.sender,nonce);
+        nonce++;
         emit tokeninfo(uri, batchno);
     }
 

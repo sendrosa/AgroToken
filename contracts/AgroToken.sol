@@ -22,4 +22,4 @@ contract AgroToken is ERC20{
     }
 
   // create a craft function
-}
+} 
