@@ -2,6 +2,8 @@ const agrotoken = artifacts.require("AgroToken");
 
 require('chai').should();
 
+const accounts = web3.eth.getAccounts();
+
 contract("AgroToken", accounts => {
     const _name= "AgroToken";
     const _symbol="AGT";
@@ -19,9 +21,12 @@ contract("AgroToken", accounts => {
 
     describe("mint supply", function(){
         it("create correct supply", async function(){
+            let balance1 = await web3.eth.getBalance(accounts[0]);
             await this.token.mint(15, 1, 1);
             const total= (await this.token.totalSupply()).toString();
             total.should.equal('15');
+            let balance2 = await web3.eth.getBalance(accounts[0]);
+            console.log(balance1-balance2);
         });
     });
     describe("transfer", function(){

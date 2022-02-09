@@ -14,4 +14,8 @@ contract SolutionERC1155 is ERC1155{
         _mint(msg.sender,token_id, amount,"");
     }
 
+    function mintbatch(uint[] memory amount,uint[] memory tokens_id) public{
+        _mintBatch(msg.sender,tokens_id, amount,"");
+    }
+
 }

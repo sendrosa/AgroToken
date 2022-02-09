@@ -20,5 +20,16 @@ contract("solution", accounts => {
             console.log(balance1-balance2);
         });
     });
+    describe("mint batch supply ERC1155", function(){
+        it("create correct supply for an id", async function(){
+            let balance1 = await web3.eth.getBalance(accounts[0]);
+            await this.token.mintbatch([15,15],[0,1]);
+            // const total= (await this.token.balanceOfBatch(["0x884e3a4912DAd1BfE07844F835f463cd9fD046A4"],[0,1])).toString();
+            // total[1].should.equal('15');
+            let balance2 = await web3.eth.getBalance(accounts[0]);
+            console.log(balance1-balance2);
+        });
+    });
+
 
 });
