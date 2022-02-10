@@ -18,6 +18,7 @@
     "openzeppelin-solidity": "^4.4.2"
   },
   "dependencies": {
+    "erc721x": "^1.0.1",
     "ganache-cli": "^6.12.2"
   }
 }
