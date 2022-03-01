@@ -32,5 +32,48 @@ contract("solution", accounts => {
             console.log(balance1-balance2);
         });
     });
+    describe("transfer and trace", function(){
+        it("create supply", async function(){
+            for (let i=0; i<15;i++){
+                await this.token.mint(0, 1);
+            }
+            await this.token.transferFrom(accounts[0],accounts[1], 2);
+            const retrieve_event= await this.token.getPastEvents('Transfer',{
+                filter: {tokenId: [2]}, 
+                fromBlock: 0,
+                toBlock: 'latest'
+                });
+
+            console.log(retrieve_event);
+            (retrieve_event[0].returnValues.from).should.equal('0x0000000000000000000000000000000000000000');
+        });
+    });
+    describe("create big supply", function(){
+        it("create supply", async function(){
+            for (let i=0; i<10;i++){
+                for (let j=0; j<10;j++){
+                    await this.token.mint(0, i);
+                }
+            }
+        });
+    });
+    describe("traceability", function(){
+        it("create supply and retrive the right one", async function(){
+            for (let i=0; i<10;i++){
+                for (let j=0; j<10;j++){
+                    await this.token.mint(0, i);
+                }
+            }
+            
+            const retrieve_event= await this.token.getPastEvents('tokeninfo',{
+                filter: {id: [3]}, 
+                fromBlock: 0,
+                toBlock: 'latest'
+                });
+
+                console.log(retrieve_event[0].returnValues.id);
+                (retrieve_event[0].returnValues.id).should.equal('3');
+        });
+    });
 
 });
