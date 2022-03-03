@@ -72,7 +72,6 @@ contract("solution", accounts => {
                 toBlock: 'latest'
                 });
 
-                console.log(retrieve_event[0].returnValues.id);
                 (retrieve_event[0].returnValues.id).should.equal('3');
         });
     });
