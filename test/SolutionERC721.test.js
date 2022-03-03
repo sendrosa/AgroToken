@@ -58,7 +58,7 @@ contract("solution", accounts => {
         });
     });
     describe("traceability", function(){
-        it("create supply and retrive the right one", async function(){
+        it("create supply and retrieve the right one", async function(){
             for (let i=0; i<10;i++){
                 for (let j=0; j<10;j++){
                     await this.token.mint(0, i);
