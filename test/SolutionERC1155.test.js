@@ -76,6 +76,22 @@ contract("solution", accounts => {
         });
     });
 
+    describe("transfer and trace", function(){
+        it("create supply", async function(){
+            for (let i=0; i<10;i++){
+                await this.token.mintnew(10, i);
+            }
+
+            await this.token.transfer(3, 0,accounts[1]);
+            const retrieve_event= await this.token.getPastEvents('TransferSingle',{
+                filter: {tokenId: [3]}, 
+                fromBlock: 0,
+                toBlock: 'latest'
+                });
+
+            (retrieve_event[0].returnValues.from).should.equal('0x0000000000000000000000000000000000000000');
+        });
+    });
 
     describe("mint batch supply ERC1155", function(){
         it("create correct supply for an id", async function(){
