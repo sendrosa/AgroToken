@@ -47,6 +47,7 @@ contract("solution", accounts => {
             (retrieve_event[0].returnValues.from).should.equal('0x0000000000000000000000000000000000000000');
         });
     });
+    
     describe("create big supply", function(){
         it("create supply", async function(){
             for (let i=0; i<10;i++){
@@ -56,6 +57,7 @@ contract("solution", accounts => {
             }
         });
     });
+
     describe("traceability", function(){
         it("create supply and retrieve the right one", async function(){
             for (let i=0; i<10;i++){
