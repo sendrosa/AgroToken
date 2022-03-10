@@ -34,7 +34,7 @@ contract("solution", accounts => {
     });
     describe("transfer and trace", function(){
         it("create supply", async function(){
-            for (let i=0; i<15;i++){
+            for (let i=0; i<10;i++){
                 await this.token.mint(0, 1);
             }
             await this.token.transferFrom(accounts[0],accounts[1], 2);
