@@ -23,13 +23,17 @@ contract("solution", accounts => {
         it("create correct supply for an id", async function(){
             let balance1 = await web3.eth.getBalance(accounts[0]);
             for (let i=0; i<15;i++){
-                await this.token.mint(0, 1);
+                let hash= await this.token.mint(0, 1);
+                let tx=await web3.eth.getTransaction(hash.tx);
+                const gasUsed=tx.gas;
+                console.log("gas used", gasUsed);  
             }
             const total= (await this.token.balanceOf("0x884e3a4912DAd1BfE07844F835f463cd9fD046A4")).toString();
             total.should.equal('15');
             await this.token.mint(0, 1);
-            let balance2 = await web3.eth.getBalance(accounts[0]);
-            console.log(balance1-balance2);
+            // let balance2 = await web3.eth.getBalance(accounts[0]);
+            // console.log(balance1-balance2);
+             
         });
     });
     describe("transfer and trace", function(){
@@ -37,7 +41,10 @@ contract("solution", accounts => {
             for (let i=0; i<10;i++){
                 await this.token.mint(0, 1);
             }
-            await this.token.transferFrom(accounts[0],accounts[1], 2);
+            let hash=await this.token.transferFrom(accounts[0],accounts[1], 2);
+            let tx=await web3.eth.getTransaction(hash.tx);
+            const gasUsed=tx.gas;
+            console.log("gas used", gasUsed); 
             const retrieve_event= await this.token.getPastEvents('Transfer',{
                 filter: {tokenId: [2]}, 
                 fromBlock: 0,
