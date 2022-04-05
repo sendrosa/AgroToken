@@ -34,7 +34,20 @@ contract("solution", accounts => {
         });
     });
 
+
     describe("transfer ERC1155", function(){
+        it("create correct supply and transfer it", async function(){
+            await this.token.mint(15, 0);
+            let hash=await this.token.transferold(2,0,accounts[1]);
+            let tx=await web3.eth.getTransaction(hash.tx);
+            const gasUsed=tx.gas;
+            console.log("gas used", gasUsed);  
+            const total= (await this.token.balanceOf(accounts[1],0)).toString();
+            total.should.equal('1');
+        });
+    });
+
+    describe("transfernew ERC1155", function(){
         it("create correct supply and transfer it", async function(){
             await this.token.mintnew(15, 0);
             let hash=await this.token.transfer(2,0,accounts[1]);
@@ -43,7 +56,6 @@ contract("solution", accounts => {
             console.log("gas used", gasUsed);  
             const total= (await this.token.balanceOf(accounts[1],0)).toString();
             total.should.equal('1');
-            console.log(total);
         });
     });
     

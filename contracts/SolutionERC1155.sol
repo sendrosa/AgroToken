@@ -22,6 +22,11 @@ contract SolutionERC1155 is ERC1155{
         }
     }
 
+    function transferold(uint id,uint token_id,address to) public{
+        _safeTransferFrom(msg.sender,to,token_id,1,"");
+        emit tokeninfo(id, token_id, to);
+    }
+
     function transfer(uint id,uint token_id,address to) public{
         _safeTransferFrom(msg.sender,to,token_id,1,"");
         emit tokeninfo(id, token_id, to);
